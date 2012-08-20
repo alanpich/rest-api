@@ -5,10 +5,12 @@ define('DISPLAY_ERRORS',true);
 
 // DATABASE CONNECTION DETAILS
 //-------------------------------------------------------------------------
-define('dbHOST','localhost');
-define('dbNAME','rest_api');
-define('dbUSER','rest_api_user');
-define('dbPASS','password');
-define('dbCHARSET','UTF8');
+define('dbNAME','rest_api');		// [required] Name of the database
+define('dbUSER','rest_api_user');	// [required] Username for database
+define('dbPASS','password');		// [required] Password for db user
+define('dbHOST','localhost');		// [optional] DB Host (defaults to `localhost`)
+define('dbTYPE','mysql');			// [optional] DB Type (defaults to mySQL)
+define('dbCHARSET','utf-8');		// [optional] DB Charset (defaults to `utf-8`)
+define('dbPREFIX','r_');			// [optional] Table prefix (defaults to null/'')
 
 

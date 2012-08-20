@@ -1,4 +1,4 @@
-<?php
+<?php namespace alanpich\REST;
 
 // SET UP GLOBAL DEFINITIONS 
 //=====================================================================
@@ -12,6 +12,8 @@ define('ROOT',dirname(__FILE__).'/');
 define('LIB',ROOT.'lib/');
 define('MODEL',ROOT.'model/');
 define('CONFIG',ROOT.'config/');
+define('TEMP',ROOT.'tmp/');
+
 
 
 
@@ -26,5 +28,13 @@ require CONFIG.'config.php';
 //=======================================================================
 require ROOT.'include.php';
 
+
+// INCLUDE & INSTANCIATE MASTERCLASS
+//	- This is the main service class
+//=======================================================================
+header('Content-type: text/plain');
+$REST = new Service;
+
+exit;
 
 
