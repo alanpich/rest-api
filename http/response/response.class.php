@@ -9,7 +9,8 @@ function __construct(){
 		
 	}//
 	
-	
+// Send the response 
+//------------------------------------------------------------------
 public function Send(){
 		
 		$R = new \stdClass;

@@ -41,8 +41,6 @@ function __autoload($class){
 	}//
 	
 	
-	
-	
 // PDO DSN GENERATOR 
 //------------------------------------------------------------------------
 if(defined('dbTYPE') && !defined('dbDSN')){

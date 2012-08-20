@@ -6,15 +6,12 @@
 // Misc ----------------------------------------------
 define('DS',DIRECTORY_SEPARATOR);
 
-
 // File Paths ----------------------------------------
 define('ROOT',dirname(__FILE__).'/');
 define('LIB',ROOT.'lib/');
 define('MODEL',ROOT.'model/');
 define('CONFIG',ROOT.'config/');
 define('TEMP',ROOT.'tmp/');
-
-
 
 
 // INCLUDE CONFIGURATION 
@@ -35,6 +32,4 @@ require ROOT.'include.php';
 header('Content-type: text/plain');
 $REST = new Service;
 
-exit;
-
-
+exit; // END

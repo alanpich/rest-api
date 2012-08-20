@@ -3,7 +3,6 @@
 class Service extends \xPDO {
 
 function __construct(){
-
 		// Set up xPDO Options -----------------------------------
 		$opts = array(
 	 		\xPDO::OPT_CACHE_PATH => TEMP.'cache/',
@@ -20,22 +19,18 @@ function __construct(){
 		    	)
 		);
 		parent::__construct(dbDSN,dbUSER,dbPASS,$opts);
-		
-		
+			
 		// Start Service ------------------------------------------
 		$this->start();
 	}//
 
 
+// Start the service
+//-----------------------------------------------------------------------
 private function start(){
-		
 		// Gather input into a nice object
 		$this->Request = new HTTP\Request;
-		
-		print_r($this->Request);
-		
-		
-		
+				
 		// We should have quit by now, but just in case...
 		$Response = new HTTP\Response\Success;
 		$Response->Send();

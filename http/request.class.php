@@ -13,10 +13,8 @@ function __construct(){
 		$this->PATH = $_GET['_api_path_']; unset($_GET['_api_path_']);
 		$this->RECEIVED = $_SERVER['REQUEST_TIME'];
 		
-		$this->getParams();
-				
+		$this->getParams();		
 	}//
-	
 	
 // Get the params for the current request method
 //-------------------------------------------------------------------------------
