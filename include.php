@@ -30,7 +30,7 @@ function __autoload($class){
 			array_shift($bits); array_shift($bits);
 			$path = ROOT.strtolower(implode(DS,$bits)).'.class.php';
 		} else {
-			echo "Unknow path [$class]\n";
+			echo "Unknown path [$class]\n";
 		};
 		
 		if(file_exists($path)){
@@ -57,9 +57,10 @@ if(defined('dbTYPE') && !defined('dbDSN')){
 };
 
 
-if(!defined('dbPREFIX')){
-	define('dbPREFIX','');
-};
+if(!defined('dbPREFIX')){	define('dbPREFIX',''); };
+
+
+if(!defined('SERVER_NAME')){ define('SERVER_NAME',''); };
 
 
 

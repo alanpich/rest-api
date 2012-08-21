@@ -26,6 +26,7 @@ public function Send(){
 		if(defined('RESPOND_WITH_REQUEST') && RESPOND_WITH_REQUEST){	
 			 $R->_Request = $GLOBALS['Request'];
 		};
+		
 
 		echo json_encode($R);
 		die();

@@ -32,10 +32,34 @@ private function start(){
 		$this->Request = new HTTP\Request;
 		$GLOBALS['Request'] = &$this->Request;
 		
+		
+		$this->User = $this->getAuthenticatedUser();
+		
+		
 		// We should have quit by now, but just in case...
-		$Response = new HTTP\Response\Success;
+		$Response = new HTTP\Response\NoContent;
 		$Response->Send();
 	}//
+	
+	
+	
+// Check & Authenticate User 	
+//-----------------------------------------------------------------------
+private function getAuthenticatedUser(){
+		
+		// First check for HTTP AUTH params in request headers
+		if(!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])){
+			$Response = new HTTP\Response\NotAuthorised;
+			$Response->Send();
+		};
+				
+		
+		
+	}//	
+	
+	
+	
+	
 
 
 };// end class rest_service

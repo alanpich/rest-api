@@ -10,10 +10,32 @@ public $RECEIVED;
 
 function __construct(){
 		$this->METHOD = $_SERVER['REQUEST_METHOD'];		
-		$this->PATH = $_GET['_api_path_']; unset($_GET['_api_path_']);
+		$this->PATH = $this->getPath();
 		$this->RECEIVED = $_SERVER['REQUEST_TIME'];
 		
+		$this->HEADERS = $this->getHeaders();
+		
 		$this->getParams();		
+	}//
+	
+	
+// Get the REST uri path
+//-------------------------------------------------------------------------------
+private function getPath(){
+		if(isset($_GET['_api_path_'])){
+			$path = $_GET['_api_path_'];
+			unset($_GET['_api_path_']);
+		} else {
+			$path = '';
+		};
+		return $path;
+	}//
+	
+	
+// Get request headers (separated to allow cross-server-compatability)
+//-------------------------------------------------------------------------------
+private function getHeaders(){
+		return apache_request_headers();
 	}//
 	
 // Get the params for the current request method

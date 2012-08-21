@@ -1,5 +1,7 @@
 <?php
 
+define('SERVER_NAME','alanpich REST API');
+
 // Display errors direct to output (debugging only, will invalidate JSON response) (defaults to false)
 define('DISPLAY_ERRORS',true);
 
