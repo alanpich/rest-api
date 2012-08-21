@@ -47,14 +47,8 @@ private function start(){
 //-----------------------------------------------------------------------
 private function getAuthenticatedUser(){
 		
-		// First check for HTTP AUTH params in request headers
-		if(!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])){
-			$Response = new HTTP\Response\NotAuthorised;
-			$Response->Send();
-		};
-				
-		
-		
+		print_r($this->Request	);
+
 	}//	
 	
 	

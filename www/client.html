@@ -1,0 +1,116 @@
+<html>
+<head>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.sha256.js"></script>
+<script type="text/javascript">
+
+function sendRequest(){
+
+	var path = $('#path').val();
+	var method = $('#method').val();
+	REST.send(method,path);
+
+};
+
+
+
+REST = {
+
+	 USER_PASSWORD: 'password'
+	,USER_USERNAME: 'alan@orangutanstudio.com'
+	
+	
+	
+	,BASE_URL: 'https://localhost/'
+	,CURRENT_TOKEN : 'asbhioasdfhhh2342342334-a'
+	
+	
+	// Generated as sha256 password salted by username
+	,TOKEN_SALT: this.USER_PASSWORD
+	
+	
+	,init: function(){
+		this.TOKEN_SALT = $.sha256hmac(this.USER_PASSWORD,this.USER_USERNAME);
+	}
+	
+	
+	,send: function(method,path){
+	
+		var url = this.BASE_URL+path
+	
+		// Get the UNIX timestamp for this request
+		var time = Math.round((new Date()).getTime() / 1000);
+		var token = this.CURRENT_TOKEN;
+		var password = this.USER_PASSWORD;
+		
+		// Token should be hash_hmac('sha256', [request-method-lowercase]:[request-path]:[request-time]:[token-in-db] , hash_hmac('sha256', [user-password],[user-username]) )
+		var token = $.sha256hmac( [method,path,time,token].join(':') , this.TOKEN_SALT);
+		
+		
+		$.ajax({
+			url: url,
+			type: method,
+		//	cache: false,
+			headers: {
+				'Request-Time': time
+			},
+			username: this.USER_USERNAME,
+			password: token,
+			
+			statusCode: {
+				400:function(data,d,xhr) { REST.receive(400,xhr) },	//bad request
+				401:function(data,d,xhr) { REST.receive(401,xhr) },	// not auth
+				403:function(data,d,xhr) { REST.receive(403,xhr) },	// verboten
+				404:function(data,d,xhr) { REST.receive(404,xhr) },	// not found
+				410:function(data,d,xhr) { REST.receive(410,xhr) },	// resource deleted
+				200:function(data,d,xhr) { REST.receive(200,xhr) },	// success / ok
+				204:function(data,d,xhr) { REST.receive(204,xhr) },	// no content
+			},
+		
+		
+		});
+		
+		
+	}//
+	
+	
+	,receive: function(status,xhr){
+		console.log('REST Received ['+status+']');
+		$('#output').html( xhr.responseText);
+	}//
+	
+	
+
+
+};// end REST
+$(document).ready(function(){
+	REST.init();
+});
+
+
+
+
+
+</script>
+
+
+
+</head>
+<body>
+
+	<textarea id="output" style="width:900px; margin:auto; height:400px;"></textarea>
+	<hr />
+	
+	<select id="method">
+		<option value="get">Get</option>
+		<option value="post">Post</option>
+		<option value="put">Put</option>
+		<option value="delete">Delete</option>
+	</select>
+	<input type="text" id="path" name="path" />
+	<button onclick="sendRequest()">Send</button>
+
+</body>
+</html>
