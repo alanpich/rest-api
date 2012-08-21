@@ -30,6 +30,6 @@ require ROOT.'include.php';
 //	- This is the main service class
 //=======================================================================
 header('Content-type: text/plain');
-$REST = new Service;
+$GLOBALS['REST'] = new Service;
 
 exit; // END

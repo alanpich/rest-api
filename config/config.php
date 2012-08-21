@@ -1,7 +1,10 @@
 <?php
 
-// Display errors direct to output (debugging only, will invalidate JSON response)
+// Display errors direct to output (debugging only, will invalidate JSON response) (defaults to false)
 define('DISPLAY_ERRORS',true);
+
+// Whether to include the Request object in the response (defaults to false)
+define('RESPOND_WITH_REQUEST',false);
 
 // DATABASE CONNECTION DETAILS
 //-------------------------------------------------------------------------

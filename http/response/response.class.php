@@ -12,7 +12,7 @@ function __construct(){
 // Send the response 
 //------------------------------------------------------------------
 public function Send(){
-		
+			
 		$R = new \stdClass;
 		$R->status = $this->status;
 		if(!empty($this->message)){
@@ -20,6 +20,11 @@ public function Send(){
 		};
 		if(isset($this->data)){
 			$R->data = $this->data;
+		};
+		
+		// If set, include Request in response
+		if(defined('RESPOND_WITH_REQUEST') && RESPOND_WITH_REQUEST){	
+			 $R->_Request = $GLOBALS['Request'];
 		};
 
 		echo json_encode($R);

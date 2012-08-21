@@ -30,7 +30,8 @@ function __construct(){
 private function start(){
 		// Gather input into a nice object
 		$this->Request = new HTTP\Request;
-				
+		$GLOBALS['Request'] = &$this->Request;
+		
 		// We should have quit by now, but just in case...
 		$Response = new HTTP\Response\Success;
 		$Response->Send();
