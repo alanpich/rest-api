@@ -3,6 +3,8 @@
 class Service extends \xPDO {
 
 function __construct(){
+		define('SERVICE_VERSION','1.0');
+		
 		// Set up xPDO Options -----------------------------------
 		$opts = array(
 	 		\xPDO::OPT_CACHE_PATH => TEMP.'cache/',

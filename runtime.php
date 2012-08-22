@@ -3,6 +3,8 @@
 // SET UP GLOBAL DEFINITIONS 
 //=====================================================================
 
+define('TOKEN','asfhio32jouoiuioh32£$R%f23');
+
 // Misc ----------------------------------------------
 define('DS',DIRECTORY_SEPARATOR);
 

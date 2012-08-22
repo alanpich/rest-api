@@ -1,5 +1,7 @@
 <?php
 
+// START BUFFERING OUTPUT (to prevent output)
+ob_start();
 
 // SET CONFIG FOR ERROR OUTPUT
 //------------------------------------------------------------------------
