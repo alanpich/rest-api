@@ -4,19 +4,30 @@
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.sha256.js"></script>
+
+<script type="text/javascript" src="js/jquery.REST.api.js"></script>
+
 <script type="text/javascript">
 
 function sendRequest(){
-
 	var path = $('#path').val();
 	var method = $('#method').val();
-	REST.send(method,path);
+	REST.send(method,path,null,responder);
+};
 
+function responder(){
+	alert('responder');
+};
+
+Client = {
+	responder: function(){
+		alert('Client.responder');
+	}
 };
 
 
 
-REST = {
+REST_old = {
 
 	 USER_PASSWORD: 'password'
 	,USER_USERNAME: 'alan@orangutanstudio.com'
@@ -60,13 +71,13 @@ REST = {
 			password: token,
 			
 			statusCode: {
-				400:function(data,d,xhr) { REST.receive(400,xhr) },	//bad request
-				401:function(data,d,xhr) { REST.receive(401,xhr) },	// not auth
-				403:function(data,d,xhr) { REST.receive(403,xhr) },	// verboten
-				404:function(data,d,xhr) { REST.receive(404,xhr) },	// not found
-				410:function(data,d,xhr) { REST.receive(410,xhr) },	// resource deleted
-				200:function(data,d,xhr) { REST.receive(200,xhr) },	// success / ok
-				204:function(data,d,xhr) { REST.receive(204,xhr) },	// no content
+				400:function(data,d,xhr) { REST_old.receive(400,xhr) },	//bad request
+				401:function(data,d,xhr) { REST_old.receive(401,xhr) },	// not auth
+				403:function(data,d,xhr) { REST_old.receive(403,xhr) },	// verboten
+				404:function(data,d,xhr) { REST_old.receive(404,xhr) },	// not found
+				410:function(data,d,xhr) { REST_old.receive(410,xhr) },	// resource deleted
+				200:function(data,d,xhr) { REST_old.receive(200,xhr) },	// success / ok
+				204:function(data,d,xhr) { REST_old.receive(204,xhr) },	// no content
 			},
 		
 		
@@ -77,16 +88,16 @@ REST = {
 	
 	
 	,receive: function(status,xhr){
-		console.log('REST Received ['+status+']');
+		console.log('REST_old Received ['+status+']');
 		$('#output').html( xhr.responseText);
 	}//
 	
 	
 
 
-};// end REST
+};// end REST_old
 $(document).ready(function(){
-	REST.init();
+	REST_old.init();
 });
 
 
